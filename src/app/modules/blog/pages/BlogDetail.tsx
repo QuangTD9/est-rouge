@@ -7,6 +7,7 @@ import { PageLoading } from "../../oneportal/components/PageLoading"
 import { formatDate } from "../../oneportal/helpers/formatDate"
 import { Image } from "../../oneportal/components/Image"
 import { BackIcon } from "../../../assets/images"
+import { PageContent } from "../../oneportal/components/PageContent"
 
 export const BlogDetail = () => {
   const api = useApiClient()
@@ -19,33 +20,34 @@ export const BlogDetail = () => {
   const blogInfo = useAsync(() => getBlogById(api, blogId), [blogId])
 
   return (
-    <div className="card">
-      <div className="card-header">Blog detail</div>
-      {blogInfo.isRunning() && <PageLoading />}
-      {!blogInfo.isRunning() && (
-        <div className="card-body">
-          <CardContent>
-            <div>
-              <p>Title:</p>
-              <p>Content:</p>
-              <p>Created at:</p>
-              <p>Image:</p>
-            </div>
-            <div>
-              <p>{blogInfo.getResult()?.title}</p>
-              <p>{blogInfo.getResult()?.content}</p>
-              <p>{formatDate(blogInfo.getResult()?.createdAt)}</p>
-              <CustomImage src={blogInfo.getResult()?.image || ""} />
-            </div>
-          </CardContent>
+    <PageContent helmet={blogInfo.getResult()?.title || ""} pageTitle="Blog Detail">
+      <div className="card">
+        {blogInfo.isRunning() && <PageLoading />}
+        {!blogInfo.isRunning() && (
+          <div className="card-body">
+            <CardContent>
+              <div>
+                <p>Title:</p>
+                <p>Content:</p>
+                <p>Created at:</p>
+                <p>Image:</p>
+              </div>
+              <div>
+                <p>{blogInfo.getResult()?.title}</p>
+                <p>{blogInfo.getResult()?.content}</p>
+                <p>{formatDate(blogInfo.getResult()?.createdAt)}</p>
+                <CustomImage src={blogInfo.getResult()?.image || ""} />
+              </div>
+            </CardContent>
 
-          <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>
-            <BackIcon />
-            Back
-          </button>
-        </div>
-      )}
-    </div>
+            <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>
+              <BackIcon />
+              Back
+            </button>
+          </div>
+        )}
+      </div>
+    </PageContent>
   )
 }
 

@@ -4,16 +4,17 @@ import styled from "styled-components"
 
 export type PageContentProps = {
   children: ReactNode
-  pageTitle: string
+  helmet: string
+  pageTitle?: string
 }
 
 export const PageContent = (props: PageContentProps) => {
-  const { children, pageTitle } = props
+  const { children, helmet, pageTitle } = props
   return (
     <section>
-      <PageTitle title={pageTitle} />
+      <PageTitle title={helmet} />
       <div>
-        <CustomTitle>{pageTitle}</CustomTitle>
+        <CustomTitle>{pageTitle || helmet}</CustomTitle>
       </div>
       {children}
     </section>

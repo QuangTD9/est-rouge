@@ -46,7 +46,7 @@ export const Blogs = () => {
   const blogsPagination = useAsync(() => getBlogsPagination(api, blogParams), [JSON.stringify(blogParams)])
 
   return (
-    <PageContent pageTitle="Post list">
+    <PageContent helmet="Post list">
       <SearchAndSortContainer>
         <PageSearch {...pageSearch.bind()} searchValue={pageSearch.query.search || undefined} />
         <PageSorter items={BLOG_SORT_ITEMS} query={sorter.query} {...sorter.bind()} />

@@ -1,4 +1,4 @@
-import { SortDirection } from "./SortDirection";
+import { SortDirection } from "./SortDirection"
 
 export type DropdownSortItem = {
   title: string

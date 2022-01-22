@@ -40,7 +40,7 @@ export const usePagePagination = (props: UsePagePaginationProps) => {
   const bind = () => ({
     onGoToPrevPage: handleGoToPrevPage,
     onGoToNextPage: handleGoToNextPage,
-    onGoToPage: handleGoToPage
+    onGoToPage: handleGoToPage,
   })
 
   return {

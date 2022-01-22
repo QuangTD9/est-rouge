@@ -2,7 +2,7 @@ import { PAGE_LIMIT_DEFAULT } from "../units/constants"
 import { useQuery } from "./useQuery"
 
 export type PageLimitQuery = {
-  limit?: number,
+  limit?: number
   page?: number
 }
 
